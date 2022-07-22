@@ -1,0 +1,8 @@
+Rainbow: true
+Show coords: true
+Speed: false
+Render shadow players: false
+Weird generation: true
+Bridge (bedrock): true
+Air jump: true
+No tool damage: true
