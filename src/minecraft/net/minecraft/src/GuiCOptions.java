@@ -24,50 +24,50 @@ public class GuiCOptions extends GuiScreen {
 				ClientSetting setting = this.options.settings.get(id);
 				switch (id) {
 					case 0:
-						String _ = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
-						setting.value = _;
+						String a = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a;
 						this.options.saveOptions();
 						var1.displayString = setting.name + ": " + setting.value;
 						break;
 					case 1:
-						String _1 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
-						setting.value = _1;
+						String a1 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a1;
 						this.options.saveOptions();
 						var1.displayString = setting.name + ": " + setting.value;
 						break;
 					case 2:
-						String _2 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
-						setting.value = _2;
+						String a2 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a2;
 						this.options.saveOptions();
 						var1.displayString = setting.name + ": " + setting.value;
 						break;
 					case 3:
-						String _3 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
-						setting.value = _3;
+						String a3 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a3;
 						this.options.saveOptions();
 						var1.displayString = setting.name + ": " + setting.value;
 						break;
 					case 4:
-						String _4 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
-						setting.value = _4;
+						String a4 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a4;
 						this.options.saveOptions();
 						var1.displayString = setting.name + ": " + setting.value;
 						break;
 					case 5:
-						String _5 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
-						setting.value = _5;
+						String a5 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a5;
 						this.options.saveOptions();
 						var1.displayString = setting.name + ": " + setting.value;
 						break;
 					case 6:
-						String _6 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
-						setting.value = _6;
+						String a6 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a6;
 						this.options.saveOptions();
 						var1.displayString = setting.name + ": " + setting.value;
 						break;
 					case 7:
-						String _7 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
-						setting.value = _7;
+						String a7 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a7;
 						this.options.saveOptions();
 						var1.displayString = setting.name + ": " + setting.value;
 						break;
