@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiIngame extends Gui {
 	private static RenderItem itemRenderer = new RenderItem();
-	private List chatMessageList = new ArrayList();
+	List chatMessageList = new ArrayList();
 	private Random rand = new Random();
 	private Minecraft mc;
 	public String testMessage = null;

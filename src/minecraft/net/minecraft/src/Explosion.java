@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import net.minecraft.client.Minecraft;
+
 public class Explosion {
 	public void doExplosion(World var1, Entity var2, double var3, double var5, double var7, float var9) {
 		var1.playSoundEffect(var3, var5, var7, "random.explode", 4.0F, (1.0F + (var1.rand.nextFloat() - var1.rand.nextFloat()) * 0.2F) * 0.7F);
@@ -82,9 +84,17 @@ public class Explosion {
 				var56 = (double)var1.getBlockDensity(var47, var49.boundingBox);
 				var57 = (1.0D - var23) * var56;
 				var49.attackEntityFrom(var2, (int)((var57 * var57 + var57) / 2.0D * 8.0D * (double)var9 + 1.0D));
-				var49.motionX += var25 * var57;
-				var49.motionY += var27 * var57;
-				var49.motionZ += var29 * var57;
+				if (var49 instanceof EntityPlayer) {
+					if (!Minecraft.mc.shouldGod) {
+						var49.motionX += var25 * var57;
+						var49.motionY += var27 * var57;
+						var49.motionZ += var29 * var57;
+					}
+				}else {
+					var49.motionX += var25 * var57;
+					var49.motionY += var27 * var57;
+					var49.motionZ += var29 * var57;
+				}
 			}
 		}
 

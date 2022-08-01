@@ -19,6 +19,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import org.lwjgl.input.Keyboard;
 
+import net.minecraft.client.Minecraft;
+
 public class World implements IBlockAccess {
 	private List wList;
 	public List loadedEntityList;
@@ -669,6 +671,9 @@ public class World implements IBlockAccess {
 	}
 
 	public float getBrightness(int var1, int var2, int var3) {
+		if (Minecraft.mc.shouldLight) {
+			return 1;
+		}
 		return lightBrightnessTable[this.getBlockLightValue(var1, var2, var3)];
 	}
 
@@ -1425,15 +1430,17 @@ public class World implements IBlockAccess {
 	}
 
 	public boolean updatingLighting() {
-		int var1 = 1000;
-
-		while(this.wList.size() > 0) {
-			--var1;
-			if(var1 <= 0) {
-				return true;
+		if (!Minecraft.mc.shouldLight) {
+			int var1 = 1000;
+	
+			while(this.wList.size() > 0) {
+				--var1;
+				if(var1 <= 0) {
+					return true;
+				}
+	
+					((MetadataChunkBlock)this.wList.remove(this.wList.size() - 1)).updateLight(this);
 			}
-
-			((MetadataChunkBlock)this.wList.remove(this.wList.size() - 1)).updateLight(this);
 		}
 
 		return false;

@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="fall"/>
+		<item key="selection" value="water"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="water"/>
+			<item value="getBrightness"/>
+			<item value="get"/>
+			<item value="chunkProvider"/>
+			<item value="attack"/>
+			<item value="torch"/>
+			<item value="_"/>
 			<item value="fall"/>
 			<item value="hurt"/>
 			<item value="jump"/>
@@ -15,14 +22,7 @@
 			<item value="render"/>
 			<item value="lava"/>
 			<item value="handlelava"/>
-			<item value="water"/>
 			<item value="runTick"/>
-			<item value="next"/>
-			<item value="esc"/>
-			<item value="escape"/>
-			<item value="this.motionX"/>
-			<item value=""/>
-			<item value="moveEntity"/>
 		</list>
 		<list key="replacehistory">
 		</list>

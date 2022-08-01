@@ -9,6 +9,8 @@ public class GuiCOptions extends GuiScreen {
 		this.parentScreen = var1;
 		this.options = var2;
 	}
+	
+	public boolean editingBSize = false;
 
 	public void initGui() {
 		for(int var1 = 0; var1 < this.options.settings.size(); ++var1) {
@@ -71,6 +73,28 @@ public class GuiCOptions extends GuiScreen {
 						this.options.saveOptions();
 						var1.displayString = setting.name + ": " + setting.value;
 						break;
+					case 8:
+						String a8 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a8;
+						this.options.saveOptions();
+						var1.displayString = setting.name + ": " + setting.value;
+						break;
+					case 9:
+						String a9 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a9;
+						this.options.saveOptions();
+						var1.displayString = setting.name + ": " + setting.value;
+						break;
+					case 10:
+						this.editingBSize = true;
+						var1.displayString = "Waiting for input";
+						break;
+					case 11:
+						String a11 = String.valueOf(!Boolean.parseBoolean(String.valueOf(setting.value)));
+						setting.value = a11;
+						this.options.saveOptions();
+						var1.displayString = setting.name + ": " + setting.value;
+						break;
 				}
 			}
 
@@ -89,6 +113,13 @@ public class GuiCOptions extends GuiScreen {
 					this.actionPerformed(l);
 				}
 			}
+		}
+		if (editingBSize && "0123456789".indexOf(var1) >= 0) {
+			ClientSetting setting = this.options.settings.get(10);
+			editingBSize = false;
+			setting.value = String.valueOf(var1);
+			GuiButton btn = (GuiButton)(this.controlList.get(10));
+			btn.displayString = setting.name + ": " + setting.value;
 		}
 	}
 

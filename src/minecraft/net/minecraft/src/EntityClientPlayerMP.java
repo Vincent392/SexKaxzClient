@@ -3,7 +3,7 @@ package net.minecraft.src;
 import net.minecraft.client.Minecraft;
 
 public class EntityClientPlayerMP extends EntityPlayerSP {
-	private NetClientHandler sendQueue;
+	public NetClientHandler sendQueue;
 	private double oldPosX;
 	private double oldBasePos;
 	private double oldPosY;

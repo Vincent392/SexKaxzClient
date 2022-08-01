@@ -22,8 +22,10 @@ import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.ClientSettings;
 import net.minecraft.src.EffectRenderer;
+import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayerSP;
 import net.minecraft.src.EntityRenderer;
+import net.minecraft.src.EntityTNTPrimed;
 import net.minecraft.src.EnumOS;
 import net.minecraft.src.FontRenderer;
 import net.minecraft.src.GLAllocation;
@@ -823,6 +825,10 @@ public abstract class Minecraft implements Runnable {
 	public boolean shouldBridge;
 	public boolean shouldAJump;
 	public boolean shouldInstabreak;
+	public boolean shouldGod;
+	public boolean shouldExplode;
+	public boolean shouldLight;
+	public int bridgeSize;
 	
 	public void runTick() {
 		this.ingameGUI.updateTick();
@@ -838,6 +844,10 @@ public abstract class Minecraft implements Runnable {
 		shouldBridge = Boolean.parseBoolean(String.valueOf(this.coptions.getValue(5)));
 		shouldAJump = Boolean.parseBoolean(String.valueOf(this.coptions.getValue(6)));
 		shouldInstabreak = Boolean.parseBoolean(String.valueOf(this.coptions.getValue(7)));
+		shouldGod = Boolean.parseBoolean(String.valueOf(this.coptions.getValue(8)));
+		shouldExplode = Boolean.parseBoolean(String.valueOf(this.coptions.getValue(9)));
+		bridgeSize = Integer.parseInt(String.valueOf(this.coptions.getValue(10)));
+		shouldLight = Boolean.parseBoolean(String.valueOf(this.coptions.getValue(11)));
 		if (shouldRainbow) {
 			if (this.r == 255 && this.g < 255 && this.b == 0) {
 	            this.g += this.spd;
@@ -866,24 +876,31 @@ public abstract class Minecraft implements Runnable {
 			this.playerController.onUpdate();
 		}
 		
-		if (this.shouldSpeed && this.thePlayer != null) {
+		if (this.shouldSpeed && this.thePlayer != null && !this.isGamePaused) {
 			this.thePlayer.motionX *= 1.12;
 			this.thePlayer.motionZ *= 1.12;
 		}
 		
 		if (this.shouldBridge && this.isMultiplayerWorld() && this.thePlayer != null) {
 			PlayerControllerMP pc = (PlayerControllerMP)(this.playerController);
-			for (int i = 0; i < 4; i++) {
-				pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX-2, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ-1, 2));
-				pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX-1, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ-1, 2));
-				pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ-1, 2));
-				pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX-2, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ, 2));
-				pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX-1, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ, 2));
-				pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ, 2));
-				pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX-2, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ+1, 2));
-				pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX-1, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ+1, 2));
-				pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ+1, 2));
+			//for (int i = 0; i < 4; i++) {
+			for (int x = Math.round((bridgeSize/2)*-1)-1; x < Math.round(bridgeSize)-1; x++) {
+				for (int z = Math.round((bridgeSize/2)*-1)+1; z < Math.round(bridgeSize)+1; z++) {
+					pc.netClientHandler.addToSendQueue(new Packet15Place(Block.bedrock.blockID, (int)this.thePlayer.posX+x, (int)this.thePlayer.posY-2, (int)this.thePlayer.posZ+z, 2));
+				}
 			}
+			//}
+		}
+		
+		if (this.shouldGod && this.thePlayer != null) {
+			this.thePlayer.health = 99;
+		}
+		
+		// should really look into this and why it doesnt work in multiplayer
+		if (this.shouldExplode && this.isMultiplayerWorld() && this.thePlayer != null && ticksRan % 20L == 0) {
+			EntityTNTPrimed tnt = new EntityTNTPrimed(this.theWorld, (float)this.thePlayer.posX, (float)this.thePlayer.posY, (float)this.thePlayer.posZ);
+			tnt.fuse = 1;
+			this.theWorld.spawnEntityInWorld(tnt);
 		}
 
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/terrain.png"));

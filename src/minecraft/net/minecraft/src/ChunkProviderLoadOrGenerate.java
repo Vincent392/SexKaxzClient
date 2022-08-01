@@ -22,13 +22,17 @@ public class ChunkProviderLoadOrGenerate implements IChunkProvider {
 	}
 
 	public boolean chunkExists(int var1, int var2) {
-		if(var1 == this.lastQueriedChunkXPos && var2 == this.lastQueriedChunkZPos && this.lastQueriedChunk != null) {
-			return true;
-		} else {
-			int var3 = var1 & 31;
-			int var4 = var2 & 31;
-			int var5 = var3 + var4 * 32;
-			return this.chunks[var5] != null && (this.chunks[var5] == this.blankChunk || this.chunks[var5].isAtLocation(var1, var2));
+		try {
+			if(var1 == this.lastQueriedChunkXPos && var2 == this.lastQueriedChunkZPos && this.lastQueriedChunk != null) {
+				return true;
+			} else {
+				int var3 = var1 & 31;
+				int var4 = var2 & 31;
+				int var5 = var3 + var4 * 32;
+				return this.chunks[var5] != null && (this.chunks[var5] == this.blankChunk || this.chunks[var5].isAtLocation(var1, var2));
+			}
+		}catch (Exception e) {
+			return false;
 		}
 	}
 

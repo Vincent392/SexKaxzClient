@@ -58,6 +58,11 @@ public final class ItemStack {
 	public int getIconIndex() {
 		return this.getItem().getIconIndex(this);
 	}
+	
+	public ItemStack duplicate() {
+		ItemStack duped = new ItemStack(this.itemID, this.stackSize, this.itemDmg);
+		return duped;
+	}
 
 	public boolean useItem(EntityPlayer var1, World var2, int var3, int var4, int var5, int var6) {
 		return this.getItem().onItemUse(this, var1, var2, var3, var4, var5, var6);

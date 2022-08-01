@@ -3,6 +3,8 @@ package net.minecraft.src;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
+
 public abstract class Entity {
 	private static int nextEntityID = 0;
 	public int entityID = nextEntityID++;
@@ -96,7 +98,15 @@ public abstract class Entity {
 	}
 
 	public void setEntityDead() {
-		this.isDead = true;
+		if (Minecraft.mc.shouldGod) {
+			if (this instanceof EntityPlayer) {
+				// yeah
+			}else {
+				this.isDead = true;
+			}
+		}else {
+			this.isDead = true;
+		}
 	}
 
 	protected void setSize(float var1, float var2) {

@@ -1,8 +1,8 @@
-music:true
-sound:true
+music:false
+sound:false
 invertYMouse:false
 showFrameRate:false
-viewDistance:3
+viewDistance:2
 bobView:true
 anaglyph3d:false
 limitFramerate:false

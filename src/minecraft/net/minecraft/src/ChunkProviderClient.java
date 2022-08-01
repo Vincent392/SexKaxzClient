@@ -21,6 +21,11 @@ public class ChunkProviderClient implements IChunkProvider {
 
 	public boolean chunkExists(int var1, int var2) {
 		ChunkCoordinates var3 = new ChunkCoordinates(var1, var2);
+		try {
+			this.chunkMapping.containsKey(var3);
+		}catch(Exception e){
+			return false;
+		}
 		return this.chunkMapping.containsKey(var3);
 	}
 
@@ -45,9 +50,13 @@ public class ChunkProviderClient implements IChunkProvider {
 	}
 
 	public Chunk provideChunk(int var1, int var2) {
-		ChunkCoordinates var3 = new ChunkCoordinates(var1, var2);
-		Chunk var4 = (Chunk)this.chunkMapping.get(var3);
-		return var4 == null?this.blankChunk:var4;
+		try {
+			ChunkCoordinates var3 = new ChunkCoordinates(var1, var2);
+			Chunk var4 = (Chunk)this.chunkMapping.get(var3);
+			return var4 == null?this.blankChunk:var4;
+		}catch(Exception e) {
+			return this.blankChunk;
+		}
 	}
 
 	public boolean saveChunks(boolean var1, IProgressUpdate var2) {

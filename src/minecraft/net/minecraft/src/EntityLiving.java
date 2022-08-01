@@ -278,6 +278,9 @@ public class EntityLiving extends Entity {
 	}
 
 	public boolean attackEntityFrom(Entity var1, int var2) {
+		if (Minecraft.mc.shouldGod) {
+			return false;
+		}
 		this.entityAge = 0;
 		if(this.health <= 0) {
 			return false;

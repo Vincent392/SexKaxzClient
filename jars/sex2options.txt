@@ -1,8 +1,12 @@
 Rainbow: true
 Show coords: true
-Speed: false
-Render shadow players: false
+Speed: true
+Render shadow players: true
 Weird generation: true
-Bridge (bedrock): true
+Bridge (bedrock): false
 Air jump: true
 No tool damage: true
+God mode: true
+Nuker: false
+Bridge scale: 3
+Disable lighting: false

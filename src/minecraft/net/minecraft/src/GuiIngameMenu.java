@@ -6,9 +6,6 @@ public class GuiIngameMenu extends GuiScreen {
 	public boolean old;
 
 	public void initGui() {
-		old = this.mc.shouldSpeed;
-		this.mc.coptions.settings.get(2).value = "false";
-		this.mc.coptions.saveOptions();
 		this.updateCounter2 = 0;
 		this.controlList.clear();
 		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 48, "Save and quit to title"));
@@ -36,15 +33,11 @@ public class GuiIngameMenu extends GuiScreen {
 			}
 
 			this.mc.changeWorld1((World)null);
-			this.mc.coptions.settings.get(2).value = "false";
-			this.mc.coptions.saveOptions();
 			this.mc.displayGuiScreen(new GuiMainMenu());
 		}
 
 		if(var1.id == 4) {
 			this.mc.displayGuiScreen((GuiScreen)null);
-			this.mc.coptions.settings.get(2).value = String.valueOf(old);
-			this.mc.coptions.saveOptions();
 			this.mc.setIngameFocus();
 		}
 

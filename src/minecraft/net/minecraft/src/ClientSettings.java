@@ -37,6 +37,10 @@ public class ClientSettings {
 		this.defaults.add(new ClientSetting("Bridge (bedrock)", "false"));
 		this.defaults.add(new ClientSetting("Air jump", "false"));
 		this.defaults.add(new ClientSetting("No tool damage", "false"));
+		this.defaults.add(new ClientSetting("God mode", "false"));
+		this.defaults.add(new ClientSetting("Nuker", "false"));
+		this.defaults.add(new ClientSetting("Bridge scale", "4"));
+		this.defaults.add(new ClientSetting("Disable lighting", "false"));
 	}
 	
 	public Object getValue(int id) {

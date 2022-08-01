@@ -26,7 +26,7 @@ public class GuiMultiplayer extends GuiScreen {
 				this.mc.displayGuiScreen(this.parentScreen);
 			} else if(var1.id == 0) {
 				String[] var2 = this.ipText.split(":");
-				this.mc.displayGuiScreen(new GuiConnecting(this.mc, var2[0], var2.length > 1?Integer.parseInt(var2[1]):25565));
+				this.mc.displayGuiScreen(new GuiConnecting(this.mc, var2[0], var2.length > 1?Integer.parseInt(var2[1].trim().replace("\"", "")):25565));
 			}
 
 		}
