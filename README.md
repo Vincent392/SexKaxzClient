@@ -3,6 +3,6 @@ Hack client for Minecraft Alpha 1.0.16.05 UNRPREVIEW2.
 
 # How to edit
 Requirements:
-Recaf
+Eclipse or any other Java editor
 
-Open the client .jar in Recaf and edit anything you want! The code is pretty much completely deobfuscated and should work perfectly
+just open the workspace and boom you can edit everything
